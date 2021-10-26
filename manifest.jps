@@ -49,6 +49,7 @@ onInstall:
     cp ${globals.WEBROOT}/application/config/config-sample-mysql.php ${globals.WEBROOT}/application/config/config.php
     sed -i "s|host=localhost|host=${nodes.sqldb.address}|g" ${globals.APP_CONFIG_PATH}
     sed -i "s|'password' => '.*',|'password' => '${nodes.sqldb.password}',|g" ${globals.APP_CONFIG_PATH}
+    sed -i 's|$oDB->quoteValue("L" . (string) $key + 1)|$oDB->quoteValue("L" + (string) $key + 1)|g' ${globals.WEBROOT}/application/helpers/update/updatedb_helper.php
     cd ${globals.WEBROOT}application/commands;
     DBENGINE=MyISAM php console.php install admin '${globals.ADMIN_PASS}' Admin ${user.email}
     sed -i "s|'username' => 'root'|'username' => 'lime'|g" ${globals.APP_CONFIG_PATH}
