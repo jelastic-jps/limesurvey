@@ -18,7 +18,7 @@ mixins:
 nodes:
 - cloudlets: 8
   nodeType: apache2
-  engine: php7.4
+  engine: php8.0
 - cloudlets: 8
   nodeType: mysql5
 
