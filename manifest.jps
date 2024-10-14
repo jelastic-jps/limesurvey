@@ -3,7 +3,7 @@ version: 1.7
 id: lime
 name: LimeSurvey
 
-baseUrl: https://raw.githubusercontent.com/sych74/limesurvey/master/
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/limesurvey/master/
 homepage: http://www.limesurvey.org
 logo: images/limesurvey.png
 
