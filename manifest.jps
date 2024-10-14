@@ -3,7 +3,7 @@ version: 1.7
 id: lime
 name: LimeSurvey
 
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/limesurvey/master/
+baseUrl: https://raw.githubusercontent.com/sych74/limesurvey/master/
 homepage: http://www.limesurvey.org
 logo: images/limesurvey.png
 
@@ -18,15 +18,15 @@ mixins:
 nodes:
 - cloudlets: 8
   nodeType: apache2
-  engine: php8.0
+  engine: php8.2
 - cloudlets: 8
-  nodeType: mysql5
+  nodeType: mysql8
 
 categories:
 - apps/content-management
 
 globals:
-  DB_PASS: ${fn.password(6)}
+  DB_PASS: ${fn.password(10)}
   APP_CONFIG_PATH: /var/www/webroot/ROOT/application/config/config.php
   ADMIN_PASS: ${fn.password(10)}
   WEBROOT: /var/www/webroot/ROOT/
@@ -36,15 +36,12 @@ onInstall:
     name: limesurvey-${globals.version_limesurvey}.zip
     context: ROOT
     archive: https://github.com/LimeSurvey/LimeSurvey/archive/${globals.version_limesurvey}.zip
-- prepareSqlDatabase:
-  - newDatabaseUser:
-      password: ${globals.DB_PASS}
-      name: lime
-    newDatabaseName: limesurvey
-    nodeGroup: sqldb
-    loginCredentials:
-      password: ${nodes.sqldb.password}
-      user: root
+      
+- cmd[sqldb]: |-
+    MYSQL_PWD=${nodes.mysql8.password} mysql -uroot -e "CREATE DATABASE limesurvey;"
+    MYSQL_PWD=${nodes.mysql8.password} mysql -uroot -e "CREATE USER 'lime'@'%' IDENTIFIED BY '${globals.DB_PASS}';"
+    MYSQL_PWD=${nodes.mysql8.password} mysql -uroot -e "GRANT ALL PRIVILEGES ON limesurvey.* TO 'lime'@'%' WITH GRANT OPTION;"
+
 - cmd [cp]: |-
     cp ${globals.WEBROOT}/application/config/config-sample-mysql.php ${globals.WEBROOT}/application/config/config.php
     sed -i "s|host=localhost|host=${nodes.sqldb.address}|g" ${globals.APP_CONFIG_PATH}
