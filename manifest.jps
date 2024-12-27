@@ -65,3 +65,5 @@ success: |-
   **Admin name:** admin  
   **Admin password:** ${globals.ADMIN_PASS}  
   **Admin email:** ${user.email}
+
+  To add a custom domain name for your LimeSurvey installation, follow the steps described in our [documentation](https://www.virtuozzo.com/application-platform-docs/custom-domains/).
