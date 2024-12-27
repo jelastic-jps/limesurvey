@@ -4,7 +4,7 @@
 
 # LimeSurvey
 
-The package deploys the [LimeSurvey](https://www.limesurvey.org/) solution - is an open-source online statistical survey web application written in PHP. LimeSurvey provides tools to develop and publish simple, quick and anonymous online surveys. Additionally, it enable users to collect responses, review statistics, and export the resulting data to other applications.
+The package deploys the [LimeSurvey](https://www.limesurvey.org/) solution - an open-source online statistical survey web application written in PHP. LimeSurvey provides tools to develop and publish simple, quick, and anonymous online surveys. Additionally, it enables users to collect responses, review statistics, and export the resulting data to other applications.
 
 
 ## Environment Topology

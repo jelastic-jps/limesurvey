@@ -8,8 +8,9 @@ homepage: https://www.limesurvey.org/
 logo: images/limesurvey.png
 
 description: |-
-  LimeSurvey is an open-source online statistical survey web application written in PHP. It enables users without coding knowledge to develop, publish and collect responses to surveys.  
-  Surveys can include branching, apply custom layouts/designs (using a web template system), and provide basic statistical analysis of survey results.
+  LimeSurvey is an open-source online statistical survey web application written in PHP. It enables users without coding knowledge to develop, publish and collect responses to surveys.
+  
+  Surveys can be configured to include branching, apply custom layouts/designs (using a web template system), and provide basic statistical analysis of survey results.
 
 mixins:
 - configs/vers.yaml
@@ -53,10 +54,14 @@ onInstall:
 - restartNodes [cp]: {}
 
 success: |-
-  Your LimeSurvey platform installation details are shown below:  
-  App path: /var/www/webroot/ROOT  
-  App URL: ${env.protocol}://${env.domain}/  
-  Admin panel URL: [${env.protocol}://${env.domain}/index.php?r=admin/authentication/sa/login](${env.protocol}://${env.domain}/index.php?r=admin/authentication/sa/login)  
-  Admin name: admin  
-  Admin password: ${globals.ADMIN_PASS}  
-  Admin email: ${user.email}
+  Your LimeSurvey platform installation details are shown below:
+  
+  **App path:** /var/www/webroot/ROOT  
+  **App URL:** [${env.protocol}://${env.domain}/](${env.protocol}://${env.domain}/)
+  
+  Use the following credentials to access the admin panel:
+  
+  **Admin panel URL:** [${env.protocol}://${env.domain}/index.php?r=admin/authentication/sa/login](${env.protocol}://${env.domain}/index.php?r=admin/authentication/sa/login)  
+  **Admin name:** admin  
+  **Admin password:** ${globals.ADMIN_PASS}  
+  **Admin email:** ${user.email}
