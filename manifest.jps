@@ -15,6 +15,9 @@ description: |-
 mixins:
 - configs/vers.yaml
 
+ssl: true
+skipNodeEmails: true
+
 nodes:
 - cloudlets: 8
   nodeType: apache2
